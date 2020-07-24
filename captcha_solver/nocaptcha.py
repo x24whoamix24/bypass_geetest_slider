@@ -185,8 +185,8 @@ class CapatchaSolver(object):
         y_i = si.splev(ipl_t, y_list)
         return (x_i, y_i)
 
-    def _btn_slide(self, x_offset=0, _x_start=6):
-
+    def _btn_slide(self, x_offset=0, _x_start=22):
+        x_offset = x_offset - _x_start
         slider = self.driver.find_element_by_class_name("geetest_slider_button")
         section = x_offset
         left_time = 1
@@ -194,7 +194,6 @@ class CapatchaSolver(object):
         xy_list = []
         for i in x_move_list:
             xy_list.append([i, random.random()])
-        old = self.driver.w3c
         action = ActionChains_Fake(self.driver)
         # action.w3c_actions.key_action.pause = lambda *a, **k: None
         action.move_to_element(slider)
@@ -204,7 +203,7 @@ class CapatchaSolver(object):
         action.perform()
         for x, y in xy_list:
             # Add a little randomization to x and y (IMPORTANT!)
-            x += random.uniform(0.01, 0.06)
+            x += random.uniform(0.01, 0.05)
             y += random.uniform(-0.6, -0.3)
 
             action.move_by_offset(xoffset=x, yoffset=y)
